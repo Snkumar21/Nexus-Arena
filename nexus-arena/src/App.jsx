@@ -1,15 +1,10 @@
-import { useState } from 'react'
-import reactLogo from './assets/Logo.png'
 import './App.css'
+import Dashboard from "./component/dashboard.jsx";
 
 function App() {
   return (
     <>
-      <div>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
+      <Route path="/dashboard" element={<Dashboard />} />
     </>
   )
 }
