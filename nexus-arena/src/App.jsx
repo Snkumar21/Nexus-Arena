@@ -1,14 +1,14 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Dashboard from "./component/dashboard.jsx";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
 
 function App() {
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/" element={<Home />} />
       </Routes>
-    </BrowserRouter>
-  )
+    </Router>
+  );
 }
 
 export default App;
