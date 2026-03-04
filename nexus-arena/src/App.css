@@ -5,12 +5,20 @@ body {
   color: white;
 }
 
+/* NavBar Section */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 50px;
   background: black;
+}
+
+/* Logo-Part */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .logo-img {
@@ -20,13 +28,14 @@ body {
   margin-bottom: 20px;
 }
 
-.logo {
-  margin-left: -45%;
-  font-size: 60px;
+.logo-text {
+  font-size: 40px;
+  text-decoration: none;
   font-weight: bold;
   color: #ff1a1a;
 }
 
+/* Navigation-btns */
 .nav-links {
   display: flex;
   list-style: none;
@@ -34,11 +43,23 @@ body {
   align-items: center;
 }
 
-.signup-btn {
+.nav-links a {
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+}
+
+.nav-links a:hover {
+  color: #ff1a1a;
+}
+
+.login-btn {
   background: #ff1a1a;
   padding: 8px 15px;
   border-radius: 5px;
 }
+
+/* Hero Section */
 
 .hero {
   text-align: center;
