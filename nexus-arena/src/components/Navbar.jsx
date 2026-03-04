@@ -1,4 +1,4 @@
-import "./styles.css";
+import "../App.css";
 
 function Navbar() {
     return (
