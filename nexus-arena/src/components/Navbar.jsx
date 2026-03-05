@@ -14,8 +14,12 @@ function Navbar() {
 
             {/* Navigation Links */}
             <ul className="nav-links">
-                <li><Link to="/about">About</Link></li>
-                <li><Link to="/services">Services</Link></li>
+                <li className="nav-btn">
+                    <Link to="/about">About</Link>
+                </li>
+                <li className="nav-btn">
+                    <Link to="/services">Services</Link>
+                </li>
                 <li className="login-btn">
                     <Link to="/login">Login</Link>
                 </li>
