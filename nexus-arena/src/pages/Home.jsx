@@ -1,6 +1,6 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
-import About from "../components/About";
+import Stats from "../components/Stats";
 import Services from "../components/Services";
 import HowItWorks from "../components/HowItWorks";
 import Testimonials from "../components/Testimonials";
@@ -20,7 +20,7 @@ function Home() {
         >
             <Navbar />
             <Hero />
-            <About />
+            <Stats />
             <Services />
             <HowItWorks />
             <Testimonials />
