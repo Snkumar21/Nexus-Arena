@@ -88,8 +88,9 @@ body {
 }
 
 .hero-title {
-  font-size: 48px;
-  color: #ff3333;
+  font-size: 80px;
+  font-family: 'Cinzel', serif;
+  color: #f01010;
   animation: fadeIn 2s ease-in;
 }
 

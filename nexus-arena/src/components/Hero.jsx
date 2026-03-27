@@ -2,7 +2,7 @@ function Hero() {
   return (
     <section className="hero">
       <h1 className="hero-title">
-        Welcome to <span>Nexus Arena 🚀</span>
+        Welcome to <span>Nexus Arena</span>
       </h1>
 
       <p className="hero-subtitle">
