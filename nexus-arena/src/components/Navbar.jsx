@@ -13,8 +13,9 @@ function Navbar() {
         if (path === "/about") {
             return (
                 <>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/services">Services</Link></li>
+                    <li className="nav-btn"><Link to="/">Home</Link></li>
+                    <li className="nav-btn"><Link to="/services">Services</Link></li>
+                    <li className="login-btn"><Link to="/login">Login</Link></li>
                 </>
             );
         }
@@ -22,8 +23,9 @@ function Navbar() {
         if (path === "/services") {
             return (
                 <>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/about">About</Link></li>
+                    <li className="nav-btn"><Link to="/">Home</Link></li>
+                    <li className="nav-btn"><Link to="/about">About</Link></li>
+                    <li className="login-btn"><Link to="/login">Login</Link></li>
                 </>
             );
         }
