@@ -83,24 +83,32 @@ body {
 
 .hero {
   text-align: center;
-  padding: 100px 20px;
+  padding: 80px 20px;
   background: rgba(0, 0, 0, 0.4);
+  margin-top: -7%;
 }
 
 .hero-title {
   font-size: 80px;
   font-family: 'Cinzel', serif;
   color: #f01010;
+  cursor: pointer;
   animation: fadeIn 2s ease-in;
+}
+
+.hero-subtitle {
+  font-size: 30px;
+  margin-top: -2%;
 }
 
 .primary-btn {
   padding: 10px 20px;
   background: #ff1a1a;
+  font-size: 20px;
   border: none;
   color: white;
   border-radius: 5px;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 /* About Section */
