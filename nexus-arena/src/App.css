@@ -187,6 +187,7 @@ body {
     rgba(255, 0, 0, 0.1)
   );
   border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 0 20px rgba(255, 80, 0, 0.6);
   transition: 0.3s ease;
   cursor: pointer;
 }
@@ -216,6 +217,7 @@ body {
 .dark h2 {
   cursor: pointer;
   font-size: 50px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .dark .services-headlines-p {
@@ -235,7 +237,6 @@ body {
   margin-top: 40px;
 }
 
-/* Card Design (Similar to stat-card) */
 .service-card {
   padding: 25px;
   border-radius: 15px;
@@ -249,11 +250,10 @@ body {
     rgba(255, 0, 0, 0.1)
   );
   border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 0 20px rgba(255, 80, 0, 0.6);
   transition: 0.3s ease;
   cursor: pointer;
 }
-
-/* Hover Animation */
 .service-card:hover {
   transform: translateY(-10px) scale(1.03);
   box-shadow: 0 0 20px rgba(255, 80, 0, 0.6);
@@ -276,10 +276,51 @@ body {
   }
 }
 
+/*---HowItWorks Section---*/
+.section-howitworks {
+  background: linear-gradient(
+    to right,
+    rgba(15, 15, 15, 0.4),
+    rgba(42, 0, 0, 0.4)
+  );
+  padding: 80px 50px;
+  text-align: center; 
+}
+
+.section-howitworks h2 {
+  cursor: pointer;
+  font-size: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .steps {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
+  gap: 25px;
+  margin-top: 40px;
+}
+
+.step {
+  padding: 25px;
+  border-radius: 15px;
+  color: white;
+  text-align: center;
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 0, 0, 0.1)
+  );
+  border: 1px solid rgba(255,255,255,0.2);
+  box-shadow: 0 0 20px rgba(255, 80, 0, 0.6);
+  transition: 0.3s ease;
+  cursor: pointer;
+}
+
+.step:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 0 20px rgba(255, 80, 0, 0.6);
 }
 
 .testimonial-card {

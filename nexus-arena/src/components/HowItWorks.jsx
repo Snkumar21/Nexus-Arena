@@ -1,7 +1,7 @@
 function HowItWorks() {
     return (
-        <section className="section">
-            <h2>How It Works</h2>
+        <section className="section-howitworks">
+            <h2>🎓 How It Works - Your Guide to Success!</h2>
 
             <div className="steps">
                 <div className="step">
