@@ -323,14 +323,16 @@ body {
   box-shadow: 0 0 20px rgba(255, 80, 0, 0.6);
 }
 
+/*---Testimonial Section---*/
 .testimonial-card {
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.2);
   padding: 20px;
   border-radius: 10px;
   width: 60%;
   margin: auto;
 }
 
+/*---Footer Section---*/
 .footer {
   background: black;
   text-align: center;
