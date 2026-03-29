@@ -84,7 +84,7 @@ body {
 .hero {
   text-align: center;
   padding: 80px 20px;
-  margin-top: -7%;
+  margin-top: -4%;
 }
 
 .hero-title {
@@ -127,40 +127,97 @@ body {
 }
 
 /* Stats Section */
+/* Layout */
+.stats-container {
+  display: flex;
+  gap: 50px;
+  padding: 80px 50px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* 🎥 Video Wrapper with Glow */
+.video-wrapper {
+  position: relative;
+  width: 50%;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(255, 80, 0, 0.6),
+              0 0 60px rgba(255, 0, 0, 0.4);
+  transition: 0.3s ease;
+}
+
+.video-wrapper:hover {
+  transform: scale(1.03);
+}
+
+/* ▶ Overlay */
+.video-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Play Button */
+.play-btn {
+  font-size: 40px;
+  color: white;
+  background: rgba(255, 50, 0, 0.8);
+  padding: 15px 20px;
+  border-radius: 50%;
+  transition: 0.3s;
+}
+
+.play-btn:hover {
+  background: #ff1a1a;
+  transform: scale(1.2);
+}
+
+/* 📊 Stats */
 /* Video */
 .video-section {
   flex: 1;
-  min-width: 250px;
+  min-width: 300px;
+  border-radius: 10%;
 }
 
 /* Stats Right Side */
 .stats {
-  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* Cards */
+/* Glass Cards */
 .stat-card {
-  background: rgba(0, 0, 0, 0.6);
-  padding: 20px;
-  border-radius: 12px;
-  text-align: left;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  padding: 20px 30px;
+  border-radius: 15px;
+  color: white;
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 0, 0, 0.1)
+  );
+  border: 1px solid rgba(255,255,255,0.2);
+  transition: 0.3s ease;
+}
+
+/* Hover Effect */
+.stat-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 0 20px rgba(255, 80, 0, 0.6);
 }
 
 /* Services Section */
 .dark {
   background: rgba(0, 0, 0, 0.4);
-}
-
-.stats {
-  display: flex;
-  justify-content: center;
-  gap: 40px;
-  margin-top: 30px;
 }
 
 .services-list {

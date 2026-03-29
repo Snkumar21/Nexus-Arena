@@ -1,18 +1,30 @@
+import { useState } from "react";
+
 function Stats() {
+  const [play, setPlay] = useState(true);
+
   return (
     <section className="stats-container">
 
       {/* Left Side - Video */}
-      <div className="video-section">
-        <iframe
-          width="100%"
-          height="450px"
-          src="https://www.youtube.com/embed/0zHE6kTPMOc?autoplay=1&mute=1&controls=1"
-          title="Nexus Arena Intro"
-          frameBorder="0"
-          allow="autoplay; encrypted-media"
-          allowFullScreen
-        ></iframe>
+      <div className="video-wrapper">
+        {!play && (
+          <div className="video-overlay" onClick={() => setPlay(true)}>
+            <div className="play-btn">▶</div>
+          </div>
+        )}
+        
+        {play && (
+          <iframe
+            width="100%"
+            height="500px"
+            src="https://www.youtube.com/embed/0zHE6kTPMOc?autoplay=1&mute=1&controls=1"
+            title="Nexus Arena Intro"
+            frameBorder="0"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+          ></iframe>
+        )}
       </div>
 
       {/* Right Side - Stats */}
