@@ -18,7 +18,7 @@ function About() {
             }}
         >
             <Navbar />
-            <section className="section">
+            <section className="about-section">
                 <h2>About Nexus Arena</h2>
                 <p>
                     Nexus Arena is a centralized education platform that aggregates

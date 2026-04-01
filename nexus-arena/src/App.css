@@ -346,6 +346,23 @@ body {
 
 /*---- About Section ----*/
 
+.about-section {
+  padding: 80px 50px;
+  text-align: center;
+}
+
+.about-section h2 {
+  color: #fb7c51;
+  cursor: pointer;
+  font-size: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.about-section p {
+  font-size: 20px;
+  margin-top: -20px;
+}
+
 /*---Contact Section---*/
 .contact-container {
   display: flex;
