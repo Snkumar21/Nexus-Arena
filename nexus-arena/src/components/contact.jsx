@@ -5,28 +5,45 @@ import "../App.css";
 function Contact() {
     const formRef = useRef();
     const [status, setStatus] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    const sendEmail = (e) => {
+    const sendEmail = async (e) => {
         e.preventDefault();
+
+        const form = formRef.current;
+
+        // 🛑 Bot protection (hidden field)
+        if (form.website.value.trim() !== "") {
+            setStatus("Submission blocked.");
+            return;
+        }
+
+        // ✅ Validation
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        setLoading(true);
         setStatus("Sending...");
 
-        emailjs
-        .sendForm(
-            "service_6tl9e0o",   // your service ID
-            "template_3lq5cvi",  // your template ID
-            formRef.current,
-            "HUNMCLsYwZz37pxsQ"  // public key
-        )
-        .then(() => {
-            alert("✅ Message sent successfully!");
-            formRef.current.reset();
-            setStatus("");
-        })
-        .catch((error) => {
+        try {
+            await emailjs.sendForm(
+                "service_6tl9e0o",
+                "template_3lq5cvi",
+                form,
+                "HUNMCLsYwZz37pxsQ"
+            );
+
+            setStatus("✅ Message sent successfully!");
+            form.reset();
+
+        } catch (error) {
             console.error("EmailJS error:", error);
-            alert("❌ Failed to send message. Try again.");
-            setStatus("");
-        });
+            setStatus("❌ Failed to send message. Try again.");
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -37,16 +54,47 @@ function Contact() {
                 <h2>Contact Us</h2>
 
                 <form ref={formRef} onSubmit={sendEmail}>
-                    <input type="text" placeholder="Your Name" required />
-                    <input type="email" placeholder="Your Email" required />
-                    <input type="text" placeholder="Subject" />
-                    <textarea placeholder="Your Message" rows="5" required></textarea>
 
-                    <button type="submit" className="primary-btn">
-                        Send Message
+                    {/* Hidden anti-bot field */}
+                    <input type="text" name="website" style={{ display: "none" }} />
+
+                    <input
+                        type="text"
+                        name="user_name"
+                        placeholder="Your Name"
+                        required
+                    />
+
+                    <input
+                        type="email"
+                        name="user_email"
+                        placeholder="Your Email"
+                        required
+                    />
+
+                    <input
+                        type="text"
+                        name="subject"
+                        placeholder="Subject"
+                    />
+
+                    <textarea
+                        name="message"
+                        placeholder="Your Message"
+                        rows="5"
+                        required
+                    ></textarea>
+
+                    <button
+                        type="submit"
+                        className="primary-btn"
+                        disabled={loading}
+                    >
+                        {loading ? "Sending..." : "Send Message"}
                     </button>
 
                     <p className="status-text">{status}</p>
+
                 </form>
             </div>
 

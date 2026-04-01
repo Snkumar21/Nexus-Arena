@@ -400,6 +400,7 @@ body {
 
 .contact-form input,
 .contact-form textarea {
+  color: #ddd;
   padding: 12px;
   border: none;
   border-radius: 8px;
@@ -436,5 +437,10 @@ body {
 .tagline {
   margin-top: 20px;
   font-style: italic;
+  color: #ff9f43;
+}
+
+.status-text {
+  margin-top: 10px;
   color: #ff9f43;
 }
