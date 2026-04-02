@@ -3,30 +3,27 @@ import { useNavigate, Link } from "react-router-dom";
 import bg from "../assets/background.png";
 import "../App.css";
 
-function Login() {
+function Signup() {
     const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
+        name: "",
         email: "",
         password: ""
     });
 
     const handleChange = (e) => {
         setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
+        ...formData,
+        [e.target.name]: e.target.value
         });
     };
 
-    const handleLogin = (e) => {
+    const handleSignup = (e) => {
         e.preventDefault();
 
-        // 🔐 Dummy login logic
-        if (formData.email && formData.password) {
-            localStorage.setItem("user", JSON.stringify(formData));
-            navigate("/services");
-        } else {
-            alert("Please fill all fields");
-        }
+        localStorage.setItem("user", JSON.stringify(formData));
+        navigate("/services");
     };
 
     return (
@@ -38,9 +35,17 @@ function Login() {
         >
             <div className="auth-container">
 
-                <h2>Login to Nexus Arena</h2>
+                <h2>Create Account</h2>
 
-                <form onSubmit={handleLogin}>
+                <form onSubmit={handleSignup}>
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Enter Name"
+                        onChange={handleChange}
+                        required
+                    />
+
                     <input
                         type="email"
                         name="email"
@@ -58,13 +63,13 @@ function Login() {
                     />
 
                     <button type="submit" className="primary-btn">
-                        Login
+                        Sign Up
                     </button>
                 </form>
 
                 <p>
-                    Don't have an account?{" "}
-                    <Link to="/signup">Sign Up</Link>
+                    Already have an account?{" "}
+                    <Link to="/login">Login</Link>
                 </p>
 
             </div>
@@ -72,4 +77,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Signup;
