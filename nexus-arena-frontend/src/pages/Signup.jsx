@@ -19,11 +19,28 @@ function Signup() {
         });
     };
 
-    const handleSignup = (e) => {
+    const handleSignup = async (e) => {
         e.preventDefault();
 
-        localStorage.setItem("user", JSON.stringify(formData));
-        navigate("/services");
+        try {
+            const res = await fetch("http://localhost:5000/api/auth/signup", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                alert("Signup successful!");
+                navigate("/login");
+            } else {
+                alert(data.message);
+            }
+
+        } catch (err) {
+            alert("Server error");
+        }
     };
 
     return (

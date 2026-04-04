@@ -1,127 +1,96 @@
-require("dotenv").config({ path: require("path").join(__dirname, ".env") });
-
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const path = require("path");
+const mongoose = require("mongoose");
 
-const connectDB = require("./config/db");
-const chatRoutes = require("./routes/chatRoutes");
-const authRoutes = require("./routes/authRoutes");
-const errorHandler = require("./middleware/errorHandler");
-const datasetRoutes = require("./routes/datasetRoutes");
-const weatherRoutes = require("./routes/weatherRoutes");
-
-// =====================
-// ⭐ OPENAI SETUP
-// =====================
-const OpenAI = require("openai");
-const openai = new OpenAI({
-    apiKey: process.env.OPENAI_KEY,
-});
-
-// =====================
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// DEBUG
-console.log("Loaded MONGO_URI:", !!process.env.MONGO_URI ? "[set]" : "[not set]");
-console.log("Loaded OPENAI_KEY:", !!process.env.OPENAI_KEY ? "[set]" : "[not set]");
-console.log("NODE_ENV:", process.env.NODE_ENV || "development");
-
 // =====================
-// CORS
+// 🔗 Middleware
 // =====================
 app.use(cors({
-    origin: [
-        "http://localhost:5500",
-        "http://localhost:5000",
-        "http://localhost:5173",
-        "https://eric-chat-bot-3-0-y6nr.vercel.app/"
-    ],
-    methods: ["GET", "POST", "OPTIONS"],
+    origin: ["http://localhost:5173"],
     credentials: true
 }));
 
 app.use(bodyParser.json());
 
-// Connect DB
-connectDB();
+// =====================
+// 🔗 MongoDB Connection
+// =====================
+mongoose.connect(process.env.MONGO_URI)
+.then(() => console.log("✅ MongoDB Connected"))
+.catch(err => console.log("❌ DB Error:", err));
 
-// Static Folder
-app.use(express.static(path.join(__dirname, "../public")));
+// =====================
+// 📦 User Schema
+// =====================
+const userSchema = new mongoose.Schema({
+    name: String,
+    email: { type: String, unique: true },
+    password: String
+});
 
-// =========================================================
-// ⭐ AI ROUTE — MAIN CHATBOT BRAIN (GPT + Memory)
-// =========================================================
+const User = mongoose.model("User", userSchema);
 
-app.post("/api/ai/ask", async (req, res) => {
+// =====================
+// 🔐 Signup API
+// =====================
+app.post("/api/auth/signup", async (req, res) => {
     try {
-        const { prompt, memory } = req.body;
+        const { name, email, password } = req.body;
 
-        if (!prompt) {
-            return res.status(400).json({ reply: "Prompt is required." });
+        const existingUser = await User.findOne({ email });
+
+        if (existingUser) {
+            return res.status(400).json({ message: "User already exists" });
         }
 
-        const messages = [
-            {
-                role: "system",
-                content: "You are ERIC, a friendly smart AI chatbot created by Nitish."
-            }
-        ];
+        const newUser = new User({ name, email, password });
+        await newUser.save();
 
-        // Add memory from frontend (optional)
-        if (Array.isArray(memory)) {
-            memory.forEach(m => {
-                messages.push({
-                    role: m.sender === "user" ? "user" : "assistant",
-                    content: m.text
-                });
-            });
-        }
+        res.status(201).json({ message: "Signup successful" });
 
-        // Add user prompt
-        messages.push({ role: "user", content: prompt });
-
-        // =====================
-        // 🔥 Call GPT Model
-        // =====================
-        const aiResponse = await openai.chat.completions.create({
-            model: "gpt-4o-mini",
-            messages,
-        });
-
-        const reply = aiResponse.choices[0].message.content;
-
-        res.json({ reply });
-
-    } catch (error) {
-        console.error("❌ AI Route Error:", error);
-        res.status(500).json({
-            reply: "⚠️ AI server error. Please try again later."
-        });
+    } catch (err) {
+        res.status(500).json({ message: "Server error" });
     }
 });
 
-// =========================================================
-// ROUTES
-// =========================================================
-app.use("/api/chat", chatRoutes);
-app.use("/api/auth", authRoutes);
-app.use("/api/dataset", datasetRoutes);
-app.use("/api/weather", weatherRoutes);
+// =====================
+// 🔐 Login API
+// =====================
+app.post("/api/auth/login", async (req, res) => {
+    try {
+        const { email, password } = req.body;
 
-// Catch-all → frontend
-app.get(/(.*)/, (req, res) => {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(400).json({ message: "User not found" });
+        }
+
+        if (user.password !== password) {
+            return res.status(400).json({ message: "Invalid password" });
+        }
+
+        res.json({
+            message: "Login successful",
+            user: {
+                name: user.name,
+                email: user.email
+            }
+        });
+
+    } catch (err) {
+        res.status(500).json({ message: "Server error" });
+    }
 });
 
-// Error handling
-app.use(errorHandler);
-
-// =========================================================
-// START SERVER
-// =========================================================
+// =====================
+// 🚀 Start Server
+// =====================
 app.listen(PORT, () => {
-    console.log(`✅ Server running on http://localhost:${PORT}`);
+    console.log(`🔥 Nexus Arena Server running on http://localhost:${PORT}`);
 });

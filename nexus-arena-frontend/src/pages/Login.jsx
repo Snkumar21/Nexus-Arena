@@ -17,15 +17,27 @@ function Login() {
         });
     };
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
 
-        // 🔐 Dummy login logic
-        if (formData.email && formData.password) {
-            localStorage.setItem("user", JSON.stringify(formData));
-            navigate("/services");
-        } else {
-            alert("Please fill all fields");
+        try {
+            const res = await fetch("http://localhost:5000/api/auth/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData)
+            });
+
+            const data = await res.json();
+
+            if (res.ok) {
+                localStorage.setItem("user", JSON.stringify(data.user));
+                navigate("/services");
+            } else {
+                alert(data.message);
+            }
+
+        } catch (err) {
+            alert("Server error");
         }
     };
 
