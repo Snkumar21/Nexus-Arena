@@ -1,21 +1,43 @@
 import "../App.css";
 import logo from "../assets/logo_icon.png";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function Navbar() {
     const location = useLocation();
+    const navigate = useNavigate();
 
-    // current path
     const path = location.pathname;
 
-    // function to render links dynamically
+    // 👤 Check user login
+    const user = JSON.parse(localStorage.getItem("user"));
+
+    // 🔓 Logout function
+    const handleLogout = () => {
+        localStorage.removeItem("user");
+        navigate("/login");
+    };
+
+    // 🔁 Dynamic Links
     const renderLinks = () => {
+
+        const authButton = user ? (
+            <li className="login-btn">
+                <button onClick={handleLogout} className="logout-btn">
+                    Logout
+                </button>
+            </li>
+        ) : (
+            <li className="login-btn">
+                <Link to="/login">Login</Link>
+            </li>
+        );
+
         if (path === "/about") {
             return (
                 <>
                     <li className="nav-btn"><Link to="/">Home</Link></li>
                     <li className="nav-btn"><Link to="/services">Services</Link></li>
-                    <li className="login-btn"><Link to="/login">Login</Link></li>
+                    {authButton}
                 </>
             );
         }
@@ -25,17 +47,17 @@ function Navbar() {
                 <>
                     <li className="nav-btn"><Link to="/">Home</Link></li>
                     <li className="nav-btn"><Link to="/about">About</Link></li>
-                    <li className="login-btn"><Link to="/login">Login</Link></li>
+                    {authButton}
                 </>
             );
         }
 
-        // default (Home page)
+        // Default (Home)
         return (
             <>
                 <li className="nav-btn"><Link to="/about">About</Link></li>
                 <li className="nav-btn"><Link to="/services">Services</Link></li>
-                <li className="login-btn"><Link to="/login">Login</Link></li>
+                {authButton}
             </>
         );
     };
@@ -49,7 +71,7 @@ function Navbar() {
                 <Link to="/" className="logo-text">Nexus Arena</Link>
             </div>
 
-            {/* Dynamic Nav */}
+            {/* Nav Links */}
             <ul className="nav-links">
                 {renderLinks()}
             </ul>

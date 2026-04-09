@@ -46,6 +46,20 @@ body {
   color: #ff1a1a;
 }
 
+.logout-btn {
+  background: #ff1a1a;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background: white;
+  color: #ff1a1a;
+}
+
 /* Navigation-btns */
 .nav-links {
   display: flex;
