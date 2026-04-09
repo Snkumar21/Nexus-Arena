@@ -500,6 +500,12 @@ body {
 
 .user-bar span {
   color: #ff4b2b;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.user-name:hover {
+  transform: scale(1.05);
 }
 
 /* 🔍 Search */
@@ -554,6 +560,27 @@ body {
   background: #ff4b2b;
   color: white;
   cursor: pointer;
+}
+
+/*---User Account CSS---*/
+.useraccount {
+  padding: 80px 50px;
+  text-align: center;
+}
+
+.useraccount-card {
+  margin: 20px auto;
+  padding: 20px;
+  width: 60%;
+  border-radius: 15px;
+  -webkit-backdrop-filter: blur(15px);
+  backdrop-filter: blur(15px);
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.1),
+    rgba(255,0,0,0.1)
+  );
+  box-shadow: 0 0 20px rgba(255, 80, 0, 0.6);
 }
 
 /* =========================
@@ -620,7 +647,6 @@ body {
     width: 90%;
   }
 }
-
 
 /* Mobile View */
 @media (max-width: 500px) {

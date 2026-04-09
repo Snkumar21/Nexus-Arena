@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import bg from "../assets/background.png";
@@ -5,6 +6,7 @@ import bg from "../assets/background.png";
 function Service() {
 
     // 👤 Get user from localStorage
+    const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("user"));
 
     return (
@@ -20,7 +22,14 @@ function Service() {
 
             {/* 👤 User Name */}
             <div className="user-bar">
-                {user ? <p>Welcome, <span>{user.name || user.email}</span> 👋</p> : null}
+                {user && (
+                    <p 
+                        className="user-name"
+                        onClick={() => navigate("/Useraccount")}
+                    >
+                        Welcome, <span>{user.name || user.email}</span> 👋
+                    </p>
+                )}
             </div>
 
             {/* 🔍 Search Bar */}
