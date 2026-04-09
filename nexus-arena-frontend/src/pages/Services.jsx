@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import bg from "../assets/background.png";
@@ -8,6 +9,21 @@ function Service() {
     // 👤 Get user from localStorage
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem("user"));
+    const [search, setSearch] = useState("");
+
+    // 📚 Sample Course Data
+    const courses = [
+        { title: "HTML & CSS Bootcamp", desc: "Learn basics of web development" },
+        { title: "React JS Mastery", desc: "Build modern web apps" },
+        { title: "Python for Beginners", desc: "Start coding with Python" },
+        { title: "Java Programming", desc: "Master Java from scratch" },
+        { title: "Node.js Backend", desc: "Build APIs and servers" }
+    ];
+
+    // 🔍 Filter logic
+    const filteredCourses = courses.filter(course =>
+        course.title.toLowerCase().includes(search.toLowerCase())
+    );
 
     return (
         <div
@@ -38,7 +54,31 @@ function Service() {
                     type="text"
                     placeholder="Search courses like HTML, React, Python..."
                     className="search-input"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
                 />
+
+                <button 
+                    className="search-btn"
+                    onClick={() => {}}
+                >
+                    Search
+                </button>
+            </div>
+
+            {/* 🎯 Courses */}
+            <div className="courses-grid">
+                {filteredCourses.length > 0 ? (
+                    filteredCourses.map((course, index) => (
+                        <div className="course-card" key={index}>
+                            <h3>{course.title}</h3>
+                            <p>{course.desc}</p>
+                            <button>Enroll Now</button>
+                        </div>
+                    ))
+                ) : (
+                    <p>No courses found 😢</p>
+                )}
             </div>
 
             {/* 🎯 Top Courses */}
