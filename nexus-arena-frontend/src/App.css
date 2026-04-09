@@ -264,18 +264,6 @@ body {
   font-size: 20px;
 }
 
-@media (max-width: 900px) {
-  .services-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 500px) {
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /*---HowItWorks Section---*/
 .section-howitworks {
   background: linear-gradient(
@@ -552,4 +540,150 @@ body {
   background: #ff4b2b;
   color: white;
   cursor: pointer;
+}
+
+/* =========================
+  📱 MOBILE RESPONSIVE
+========================= */
+
+/* Tablet View */
+@media (max-width: 900px) {
+
+  /* Navbar */
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .logo-text {
+    font-size: 28px;
+  }
+
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+  }
+
+  /* Hero */
+  .hero-title {
+    font-size: 50px;
+  }
+
+  .hero-subtitle {
+    font-size: 20px;
+  }
+
+  /* Stats Section */
+  .stats-container {
+    flex-direction: column;
+    padding: 50px 20px;
+  }
+
+  .video-wrapper {
+    width: 100%;
+  }
+
+  /* Grid Layouts */
+  .courses-grid,
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  /* Contact */
+  .contact-container {
+    flex-direction: column;
+    padding: 50px 20px;
+  }
+
+  /* Auth */
+  .auth-container {
+    width: 90%;
+  }
+}
+
+
+/* Mobile View */
+@media (max-width: 500px) {
+
+  /* Navbar */
+  .logo-img {
+    height: 60px;
+  }
+
+  .logo-text {
+    font-size: 22px;
+  }
+
+  .nav-links a {
+    font-size: 16px;
+  }
+
+  /* Hero */
+  .hero-title {
+    font-size: 35px;
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+  }
+
+  .primary-btn {
+    font-size: 16px;
+    padding: 8px 15px;
+  }
+
+  /* Sections */
+  .section,
+  .section-howitworks,
+  .about-section {
+    padding: 50px 20px;
+  }
+
+  .dark h2,
+  .about-section h2,
+  .section-howitworks h2 {
+    font-size: 30px;
+  }
+
+  /* Search */
+  .search-input {
+    width: 90%;
+  }
+
+  /* Grids → Single Column */
+  .courses-grid,
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Cards */
+  .course-card,
+  .service-card,
+  .step,
+  .stat-card {
+    padding: 15px;
+  }
+
+  /* User bar */
+  .user-bar {
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Contact */
+  .contact-form,
+  .contact-info {
+    padding: 20px;
+  }
+
+  /* Footer */
+  .footer {
+    font-size: 14px;
+  }
 }
