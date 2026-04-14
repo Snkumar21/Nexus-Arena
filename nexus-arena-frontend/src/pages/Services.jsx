@@ -66,21 +66,6 @@ function Service() {
                 </button>
             </div>
 
-            {/* 🎯 Courses */}
-            <div className="courses-grid">
-                {filteredCourses.length > 0 ? (
-                    filteredCourses.map((course, index) => (
-                        <div className="course-card" key={index}>
-                            <h3>{course.title}</h3>
-                            <p>{course.desc}</p>
-                            <button>Enroll Now</button>
-                        </div>
-                    ))
-                ) : (
-                    <p>No courses found 😢</p>
-                )}
-            </div>
-
             {/* 🎯 Top Courses */}
             <section className="section dark">
                 <h2>🔥 Top Courses</h2>
@@ -105,6 +90,15 @@ function Service() {
                         <button>Enroll Now</button>
                     </div>
 
+                </div>
+
+                <div style={{ marginTop: "30px" }}>
+                    <button 
+                        className="primary-btn"
+                        onClick={() => navigate("/courses")}
+                    >
+                        Explore More 🚀
+                    </button>
                 </div>
             </section>
 

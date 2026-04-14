@@ -5,6 +5,7 @@ import Services from "./pages/Services";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Useraccount from "./components/useraccount";
+import Courses from "./pages/Courses";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/Useraccount" element={<Useraccount />} />
+        <Route path="/courses" element={<Courses />} />
       </Routes>
     </Router>
   );

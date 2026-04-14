@@ -578,6 +578,15 @@ body {
   cursor: pointer;
 }
 
+.primary-btn {
+  transition: 0.3s;
+}
+
+.primary-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+}
+
 /*---User Account CSS---*/
 .useraccount {
   padding: 80px 50px;
