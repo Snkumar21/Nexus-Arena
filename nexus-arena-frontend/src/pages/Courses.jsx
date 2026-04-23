@@ -1,26 +1,32 @@
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import bg from "../assets/background.png";
+import courses from "../data/coursesData";
 import "../App.css";
 
 function Courses() {
 
+    const user = JSON.parse(localStorage.getItem("user"));
     const [search, setSearch] = useState("");
-
-    const courses = [
-        { title: "HTML & CSS Bootcamp", desc: "Learn basics of web development" },
-        { title: "React JS Mastery", desc: "Build modern web apps" },
-        { title: "Python for Beginners", desc: "Start coding with Python" },
-        { title: "Java Programming", desc: "Master Java from scratch" },
-        { title: "Node.js Backend", desc: "Build APIs and servers" },
-        { title: "MongoDB Basics", desc: "Learn database management" },
-        { title: "Full Stack Development", desc: "Become full stack dev" }
-    ];
+    const navigate = useNavigate();
 
     const filteredCourses = courses.filter(course =>
         course.title.toLowerCase().includes(search.toLowerCase())
     );
+
+    const handleEnroll = (course) => {
+        let user = JSON.parse(localStorage.getItem("user"));
+
+        if (!user) {
+            alert("Please login first");
+            navigate("/login");
+            return;
+        }
+
+        navigate("/payment", { state: course });
+    };
 
     return (
         <div
@@ -31,6 +37,18 @@ function Courses() {
             }}
         >
             <Navbar />
+
+            {/* 👤 User Name */}
+            <div className="user-bar">
+                {user && (
+                    <p 
+                        className="user-name"
+                        onClick={() => navigate("/Useraccount")}
+                    >
+                        Welcome, <span>{user.name || user.email}</span> 👋
+                    </p>
+                )}
+            </div>
 
             <section className="section dark">
                 <h2>📚 All Courses</h2>
@@ -57,7 +75,9 @@ function Courses() {
                             <div className="course-card" key={index}>
                                 <h3>{course.title}</h3>
                                 <p>{course.desc}</p>
-                                <button>Enroll Now</button>
+                                <button onClick={() => handleEnroll(course)}>
+                                    Enroll Now - ₹{course.price}
+                                </button>
                             </div>
                         ))
                     ) : (
