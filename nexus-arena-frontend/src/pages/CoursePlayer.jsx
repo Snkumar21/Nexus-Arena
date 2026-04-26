@@ -6,6 +6,7 @@ function CoursePlayer() {
 
     const location = useLocation();
     const course = location.state;
+    const user = JSON.parse(localStorage.getItem("user"));
 
     if (!course) {
         return <h2>Course not found</h2>;
@@ -14,6 +15,18 @@ function CoursePlayer() {
     return (
         <div>
             <Navbar />
+
+            {/* 👤 User Name */}
+            <div className="user-bar">
+                {user && (
+                    <p 
+                        className="user-name"
+                        onClick={() => navigate("/Useraccount")}
+                    >
+                        Welcome, <span>{user.name || user.email}</span> 👋
+                    </p>
+                )}
+            </div>
 
             <div className="section dark">
                 <h2>{course.title}</h2>
