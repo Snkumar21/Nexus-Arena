@@ -18,13 +18,11 @@ function Courses() {
 
     const handleEnroll = (course) => {
         let user = JSON.parse(localStorage.getItem("user"));
-
         if (!user) {
             alert("Please login first");
             navigate("/login");
             return;
         }
-
         navigate("/payment", { state: course });
     };
 
