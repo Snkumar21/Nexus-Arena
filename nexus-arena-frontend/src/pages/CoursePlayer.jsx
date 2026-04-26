@@ -1,10 +1,11 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import "../App.css";
 
 function CoursePlayer() {
 
     const location = useLocation();
+    const navigate = useNavigate();
     const course = location.state;
     const user = JSON.parse(localStorage.getItem("user"));
 
