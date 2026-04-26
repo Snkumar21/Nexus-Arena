@@ -72,7 +72,7 @@ function Courses() {
                         filteredCourses.map((course, index) => (
                             <div className="course-card" key={index}>
                                 <h3>{course.title}</h3>
-                                <p>{course.desc}</p>
+                                <p>{course.desc} - {course.platform}</p>
                                 <button onClick={() => handleEnroll(course)}>
                                     Enroll Now - ₹{course.price}
                                 </button>
