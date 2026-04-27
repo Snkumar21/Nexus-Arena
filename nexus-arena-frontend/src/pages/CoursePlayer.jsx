@@ -34,7 +34,7 @@ function CoursePlayer() {
 
                 <iframe
                     width="80%"
-                    height="400"
+                    height="500"
                     src={course.video}
                     title={course.title}
                     frameBorder="0"
