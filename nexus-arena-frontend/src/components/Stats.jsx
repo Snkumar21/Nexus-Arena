@@ -1,4 +1,5 @@
 import { useState } from "react";
+import video from "../assets/Intro-Video.mp4";
 
 function Stats() {
   const [play, setPlay] = useState(true);
@@ -15,15 +16,15 @@ function Stats() {
         )}
         
         {play && (
-          <iframe
+          <video
             width="100%"
             height="500px"
-            src="https://www.youtube.com/embed/0zHE6kTPMOc?autoplay=1&mute=1&controls=1"
-            title="Nexus Arena Intro"
-            frameBorder="0"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-          ></iframe>
+            controls
+            autoPlay
+          >
+            <source src={video} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         )}
       </div>
 

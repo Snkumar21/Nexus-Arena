@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import bg from "../assets/background.png";
 import courses from "../data/coursesData";
+import video from "../assets/HowToStart.mp4";
 
 function Service() {
     const navigate = useNavigate();
@@ -105,14 +106,18 @@ function Service() {
 
                 <div style={{ display: "flex", justifyContent: "center" }}>
                     <div className="video-wrapper" style={{ width: "60%" }}>
-                        <iframe
+                        <video
                             width="100%"
-                            height="350"
-                            src="https://www.youtube.com/embed/0zHE6kTPMOc"
-                            title="How to Enroll"
-                            frameBorder="0"
-                            allowFullScreen
-                        ></iframe>
+                            height="400"
+                            controls
+                            style={{ 
+                                borderRadius: "10px",
+                                boxShadow: "0 0 20px rgba(255, 80, 0, 0.6)"
+                            }}
+                        >
+                            <source src={video} type="video/mp4" />
+                            Your browser does not support the video tag.
+                        </video>
                     </div>
                 </div>
             </section>
