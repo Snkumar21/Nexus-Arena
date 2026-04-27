@@ -7,7 +7,31 @@ const courses = [
         rating: 4.5,
         students: 1200,
         platform: "Udemy",
-        video: "https://www.youtube.com/embed/0zHE6kTPMOc"
+        
+        chapters: [
+            {
+                title: "Introduction to HTML",
+                video: "https://www.youtube.com/embed/0zHE6kTPMOc"
+            },
+            {
+                title: "HTML Tags & Elements",
+                video: "https://www.youtube.com/embed/qz0aGYrrlhU"
+            },
+            {
+                title: "Forms & Inputs",
+                video: "https://www.youtube.com/embed/fNcJuPIZ2WE",
+                assessment: true
+            },
+            {
+                title: "CSS Basics",
+                video: "https://www.youtube.com/embed/yfoY53QXEnI"
+            },
+            {
+                title: "Flexbox & Grid",
+                video: "https://www.youtube.com/embed/JJSoEo8JSnc",
+                assessment: true
+            }
+        ]
     },
     {
         id: 2,
@@ -17,7 +41,22 @@ const courses = [
         rating: 4.7,
         students: 2000,
         platform: "Coursera",
-        video: "https://www.youtube.com/embed/Ke90Tje7VS0"
+
+        chapters: [
+            {
+                title: "React Introduction",
+                video: "https://www.youtube.com/embed/Ke90Tje7VS0"
+            },
+            {
+                title: "Components & Props",
+                video: "https://www.youtube.com/embed/Ke90Tje7VS0"
+            },
+            {
+                title: "State & Hooks",
+                video: "https://www.youtube.com/embed/Ke90Tje7VS0",
+                assessment: true
+            }
+        ]
     },
     {
         id: 3,
